@@ -1,7 +1,11 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using NetCore.AutoRegisterDi;
+using NodaTime;
 using System.Text;
+using TaskTideAPI.DataContexts;
+using Newtonsoft.Json;
 
 namespace TaskTideAPI
 {
@@ -16,7 +20,19 @@ namespace TaskTideAPI
             var jwtSecretKey = Environment.GetEnvironmentVariable("JWT_KEY") ?? configuration["JWT:Key"]!;
             // Add services to the container.
 
-            builder.Services.AddControllers();
+            builder.Services.AddDbContext<TaskTideContext>(
+                options =>
+                {
+                    options.UseNpgsql(configuration.GetConnectionString("TaskTidePGLocal"));
+                }
+            );
+
+            builder
+                .Services
+                .AddControllers()
+                .AddNewtonsoftJson(
+                    options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                );
 
             builder.Services.RegisterAssemblyPublicNonGenericClasses().AsPublicImplementedInterfaces();
 
@@ -29,7 +45,7 @@ namespace TaskTideAPI
                     {
                         ValidateIssuer = true,
                         ValidateAudience = true,
-                        ValidateLifetime = true,
+                        ValidateLifetime = false,
                         ValidateIssuerSigningKey = true,
                         ValidIssuer = configuration["JWT:Issuer"],
                         ValidAudience = configuration["JWT:Audience"],
@@ -79,6 +95,8 @@ namespace TaskTideAPI
                         );
                     }
                 );
+
+            builder.Services.AddSingleton<IClock>(SystemClock.Instance);
 
             var app = builder.Build();
 

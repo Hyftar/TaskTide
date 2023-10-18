@@ -3,16 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskTideLib", "TaskTideLib\TaskTideLib.csproj", "{E3B0DF02-7652-4B17-940B-8749524E54D0}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{34FCFC2F-A9EA-4B42-A4C2-137468EC6743}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskTideLibTests", "TaskTideLibTests\TaskTideLibTests.csproj", "{39D72A23-1E01-4EBA-88E3-355744B4E8AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskTideAPI", "TaskTideAPI\TaskTideAPI.csproj", "{394E6ED5-20E7-46F9-BF34-392A7FFF46D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskTideAPI", "TaskTideAPI\TaskTideAPI.csproj", "{394E6ED5-20E7-46F9-BF34-392A7FFF46D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskTideTests", "TaskTideTests\TaskTideTests.csproj", "{BE78B62B-4A0F-4B01-B67D-4553EDD3A34A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,18 +18,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E3B0DF02-7652-4B17-940B-8749524E54D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E3B0DF02-7652-4B17-940B-8749524E54D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E3B0DF02-7652-4B17-940B-8749524E54D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E3B0DF02-7652-4B17-940B-8749524E54D0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{39D72A23-1E01-4EBA-88E3-355744B4E8AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{39D72A23-1E01-4EBA-88E3-355744B4E8AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{39D72A23-1E01-4EBA-88E3-355744B4E8AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{39D72A23-1E01-4EBA-88E3-355744B4E8AF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{394E6ED5-20E7-46F9-BF34-392A7FFF46D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{394E6ED5-20E7-46F9-BF34-392A7FFF46D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{394E6ED5-20E7-46F9-BF34-392A7FFF46D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{394E6ED5-20E7-46F9-BF34-392A7FFF46D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE78B62B-4A0F-4B01-B67D-4553EDD3A34A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE78B62B-4A0F-4B01-B67D-4553EDD3A34A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE78B62B-4A0F-4B01-B67D-4553EDD3A34A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE78B62B-4A0F-4B01-B67D-4553EDD3A34A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

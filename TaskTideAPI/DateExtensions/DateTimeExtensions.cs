@@ -1,6 +1,6 @@
 ﻿using NodaTime;
 
-namespace TaskTideLib.DateExtensions
+namespace TaskTideAPI.DateExtensions
 {
     public static class DateTimeExtensions
     {

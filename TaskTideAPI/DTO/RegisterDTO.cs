@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TaskTideAPI.Validators;
 
 namespace TaskTideAPI.DTO
 {
-    public class LoginDTO
+    public class RegisterDTO
     {
         [Required]
         [MinLength(2, ErrorMessage = "User name must be at least 2 characters long")]
@@ -15,5 +16,9 @@ namespace TaskTideAPI.DTO
         [MaxLength(64, ErrorMessage = "Password must be at most 64 characters long")]
         [RegularExpression(@"(?=.*[a-zA-Z])(?=.*\d).{8,64}", ErrorMessage = "Password must contain at least one digit and one letter")]
         public string Password { get; set; }
+
+        [Required]
+        [Compare("Password", ErrorMessage = "Password and password confirmation must match")]
+        public string PasswordConfirmation { get; set; }
     }
 }

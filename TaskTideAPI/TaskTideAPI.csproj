@@ -8,16 +8,54 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="C:\Users\Simon\.nuget\packages\entityframeworkcore.diagrams\0.4.2\contentFiles\any\netstandard1.6\wwwroot\db-diagrams\3rdpartylicenses.txt" />
+    <Content Remove="C:\Users\Simon\.nuget\packages\entityframeworkcore.diagrams\0.4.2\contentFiles\any\netstandard1.6\wwwroot\db-diagrams\favicon.ico" />
+    <Content Remove="C:\Users\Simon\.nuget\packages\entityframeworkcore.diagrams\0.4.2\contentFiles\any\netstandard1.6\wwwroot\db-diagrams\index.html" />
+    <Content Remove="C:\Users\Simon\.nuget\packages\entityframeworkcore.diagrams\0.4.2\contentFiles\any\netstandard1.6\wwwroot\db-diagrams\inline.764ea7e8f233c3a6809b.bundle.js" />
+    <Content Remove="C:\Users\Simon\.nuget\packages\entityframeworkcore.diagrams\0.4.2\contentFiles\any\netstandard1.6\wwwroot\db-diagrams\main.d0329d265059e3e55cc6.bundle.js" />
+    <Content Remove="C:\Users\Simon\.nuget\packages\entityframeworkcore.diagrams\0.4.2\contentFiles\any\netstandard1.6\wwwroot\db-diagrams\MaterialIcons-Regular.012cf6a10129e2275d79.woff" />
+    <Content Remove="C:\Users\Simon\.nuget\packages\entityframeworkcore.diagrams\0.4.2\contentFiles\any\netstandard1.6\wwwroot\db-diagrams\MaterialIcons-Regular.570eb83859dc23dd0eec.woff2" />
+    <Content Remove="C:\Users\Simon\.nuget\packages\entityframeworkcore.diagrams\0.4.2\contentFiles\any\netstandard1.6\wwwroot\db-diagrams\MaterialIcons-Regular.a37b0c01c0baf1888ca8.ttf" />
+    <Content Remove="C:\Users\Simon\.nuget\packages\entityframeworkcore.diagrams\0.4.2\contentFiles\any\netstandard1.6\wwwroot\db-diagrams\MaterialIcons-Regular.e79bfd88537def476913.eot" />
+    <Content Remove="C:\Users\Simon\.nuget\packages\entityframeworkcore.diagrams\0.4.2\contentFiles\any\netstandard1.6\wwwroot\db-diagrams\polyfills.0963b44a58b5526cfab7.bundle.js" />
+    <Content Remove="C:\Users\Simon\.nuget\packages\entityframeworkcore.diagrams\0.4.2\contentFiles\any\netstandard1.6\wwwroot\db-diagrams\styles.20f9545db506af88f79c.bundle.css" />
+    <Content Remove="C:\Users\Simon\.nuget\packages\entityframeworkcore.diagrams\0.4.2\contentFiles\any\netstandard1.6\wwwroot\db-diagrams\vendor.fa09c1316e94520ecd3d.bundle.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="appsettings.Development.json.dist" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.Development.json.dist" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="7.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" Version="7.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.12">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="NetCore.AutoRegisterDi" Version="2.1.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.11" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.NodaTime" Version="7.0.11" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TaskTideLib\TaskTideLib.csproj" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>

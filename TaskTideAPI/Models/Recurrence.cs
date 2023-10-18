@@ -1,9 +1,9 @@
 ﻿using NodaTime;
-using TaskTideLib.DateExtensions;
+using TaskTideAPI.DateExtensions;
 
-namespace TaskTideLib.Models
+namespace TaskTideAPI.Models
 {
-    public class Recurrence
+    public class Recurrence : ITransactionItem
     {
         public int Id { get; set; }
 
@@ -32,7 +32,7 @@ namespace TaskTideLib.Models
         /// <summary>
         /// For EndType = Duration, after how long to stop the recurrence
         /// </summary>
-        public Period? Duration { get; set; }
+        public Duration? Duration { get; set; }
 
         /// <summary>
         /// Interval of time between two events
@@ -55,6 +55,8 @@ namespace TaskTideLib.Models
         /// For yearly ordinal events, representing the months the ordinal event should occur on.
         /// </summary>
         public Months Months { get; set; }
+
+        public bool Deleted { get; set; } = false;
 
         public bool ShouldOccurOn(LocalDate target)
         {

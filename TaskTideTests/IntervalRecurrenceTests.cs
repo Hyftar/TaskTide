@@ -1,5 +1,5 @@
 using NodaTime;
-using TaskTideLib.Models;
+using TaskTideAPI.Models;
 
 namespace TaskTideLibTests
 {

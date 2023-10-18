@@ -7,8 +7,8 @@ namespace TaskTideAPI.Controllers
 {
     [Authorize]
     [ApiController]
-    [Route("/api/[controller]")]
-    public abstract class AuthorizedController : Controller
+    [Route("/api/[controller]/[action]")]
+    public abstract class BaseAuthorizedController : Controller
     {
         protected int CurrentUserId = 0;
 

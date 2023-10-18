@@ -9,5 +9,8 @@
     "Issuer": "localhost",
     "Audience": "tasktide",
     "Key": "oi46o7s7zz254lp1i2xv6i7sugemq805"
+  },
+  "ConnectionStrings": {
+    "TaskTidePGLocal": "User ID=[USERNAME];Password=[PASSWORD];Host=localhost;Port=5432;Database=TaskTide;Pooling=true;Min Pool Size=0;Max Pool Size=100;Connection Lifetime=0;"
   }
 }

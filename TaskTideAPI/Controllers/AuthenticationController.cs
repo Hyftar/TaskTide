@@ -1,17 +1,17 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using TaskTideAPI.DTO;
+using TaskTideAPI.Models;
 using TaskTideAPI.Repositories;
 
 namespace TaskTideAPI.Controllers
 {
     [ApiController]
-    [Route("/api/[controller]")]
+    [Route("/api/[controller]/[action]")]
     public class AuthenticationController : Controller
     {
         private readonly IConfiguration Configuration;
@@ -31,16 +31,29 @@ namespace TaskTideAPI.Controllers
         {
             var user = this.UserRepository.GetByUsername(login.Username);
 
-            if (user == null)
+            if (user == null || !UserHelpers.Verify(login.Password, user.HashedPassword))
             {
-                return this.Unauthorized();
+                return this.Unauthorized(new { Errors = new[] { "Invalid username or password" } });
             }
 
-            if (!UserHelpers.Verify(login.Password, user.HashedPassword))
-            {
-                return this.Unauthorized();
-            }
+            var token = this.CreateToken(user);
 
+            return this.Json(new { token });
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public IActionResult Register(RegisterDTO login)
+        {
+            var user = this.UserRepository.CreateUser(login.Username, login.Password);
+
+            var token = this.CreateToken(user);
+
+            return this.Json(new { token });
+        }
+
+        private string CreateToken(User user)
+        {
             var claims =
                 new[]
                 {
@@ -59,7 +72,8 @@ namespace TaskTideAPI.Controllers
                 signingCredentials: creds
             );
 
-            return this.Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
+            var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+            return tokenString;
         }
     }
 }
