@@ -10,7 +10,7 @@ namespace TaskTideAPI.DTO
         /// <summary>
         /// Date reference of the first event
         /// </summary>
-        public LocalDate StartDate { get; set; }
+        public DateOnly StartDate { get; set; }
 
         /// <summary>
         /// When to stop the recurrence
@@ -25,7 +25,7 @@ namespace TaskTideAPI.DTO
         /// <summary>
         /// For EndType = Duration, after how long to stop the recurrence
         /// </summary>
-        public Duration? Duration { get; set; }
+        public int? DurationInMinutes { get; set; }
 
         /// <summary>
         /// Interval of time between two events

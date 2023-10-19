@@ -37,8 +37,6 @@ namespace TaskTideAPI.Repositories
                         User = user,
                     }
                 );
-
-            this.TaskTideContext.SaveChanges();
         }
     }
 }

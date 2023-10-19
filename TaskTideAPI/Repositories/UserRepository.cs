@@ -56,16 +56,8 @@ namespace TaskTideAPI.Repositories
 
             this.TaskTideContext.Calendars.Add(userDefaultCalendar);
 
-            this.TransactionEventsRepository.Log(
-                user,
-                TransactionType.Create,
-                user
-            );
-
-            this.TransactionEventsRepository.Log(
-                userDefaultCalendar,
-                TransactionType.Create
-            );
+            this.TransactionEventsRepository.Log(user, TransactionType.Create, user);
+            this.TransactionEventsRepository.Log(userDefaultCalendar, TransactionType.Create);
 
             this.TaskTideContext.SaveChanges();
 

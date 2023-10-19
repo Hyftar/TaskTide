@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using TaskTideAPI.Validators;
 
 namespace TaskTideAPI.DTO
 {

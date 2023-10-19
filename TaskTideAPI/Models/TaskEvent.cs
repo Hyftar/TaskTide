@@ -10,6 +10,8 @@ namespace TaskTideAPI.Models
 
         public string Description { get; set; }
 
+        public Calendar Parent { get; set; }
+
         public ZonedDateTime CreatedAt { get; set; }
 
         public ICollection<Recurrence> Recurrences { get; set; }

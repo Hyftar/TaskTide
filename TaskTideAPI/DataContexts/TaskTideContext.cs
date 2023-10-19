@@ -48,6 +48,11 @@ public partial class TaskTideContext : DbContext
             .WithMany(x => x.Calendars);
 
         modelBuilder
+            .Entity<Calendar>()
+            .HasMany(x => x.TasksAndEvents)
+            .WithOne(x => x.Parent);
+
+        modelBuilder
             .Entity<CalendarInvitation>()
             .HasOne(x => x.Inviter)
             .WithMany(x => x.InvitationsSent);
