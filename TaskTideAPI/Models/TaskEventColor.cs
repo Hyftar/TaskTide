@@ -6,10 +6,10 @@
 
         public string Name { get; set; }
 
-        public ushort Red { get; set; }
+        public byte Red { get; set; }
 
-        public ushort Green { get; set; }
+        public byte Green { get; set; }
 
-        public ushort Blue { get; set; }
+        public byte Blue { get; set; }
     }
 }

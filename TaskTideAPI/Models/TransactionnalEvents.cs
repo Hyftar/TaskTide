@@ -16,12 +16,4 @@ namespace TaskTideAPI.Models
 
         public ZonedDateTime Timestamp { get; set; }
     }
-
-    public enum TransactionType
-    {
-        NotCategorized,
-        Create,
-        Update,
-        Delete,
-    }
 }

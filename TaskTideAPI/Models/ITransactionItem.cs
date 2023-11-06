@@ -2,6 +2,6 @@
 {
     public interface ITransactionItem
     {
-        int Id { get; set; }
+        public int Id { get; set; }
     }
 }
