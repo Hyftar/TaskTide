@@ -1,7 +1,7 @@
 using NodaTime;
 using TaskTideAPI.Models;
 
-namespace TaskTideLibTests
+namespace TaskTideTests
 {
     public class IntervalRecurrenceTests
     {

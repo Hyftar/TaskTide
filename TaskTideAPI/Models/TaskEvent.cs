@@ -16,6 +16,8 @@ namespace TaskTideAPI.Models
 
         public ICollection<Recurrence> Recurrences { get; set; }
 
+        public ICollection<LunarCalendarRecurrence> LunarCalendarRecurrences { get; set; }
+
         public ICollection<TaskEventInstance> Instances { get; set; }
 
         public bool Deleted { get; set; } = false;
