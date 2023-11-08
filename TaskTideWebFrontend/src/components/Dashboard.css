@@ -1,0 +1,6 @@
+.dashboard-container {
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr 2fr;
+    width: 100vw;
+}

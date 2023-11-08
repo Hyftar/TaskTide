@@ -12,6 +12,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskTideAPI", "TaskTideAPI\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TaskTideTests", "TaskTideTests\TaskTideTests.csproj", "{BE78B62B-4A0F-4B01-B67D-4553EDD3A34A}"
 EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "TaskTideWebFrontend", "TaskTideWebFrontend\TaskTideWebFrontend.esproj", "{1E8A9177-3765-4870-B747-12031303F1A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,12 @@ Global
 		{BE78B62B-4A0F-4B01-B67D-4553EDD3A34A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE78B62B-4A0F-4B01-B67D-4553EDD3A34A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE78B62B-4A0F-4B01-B67D-4553EDD3A34A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E8A9177-3765-4870-B747-12031303F1A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E8A9177-3765-4870-B747-12031303F1A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E8A9177-3765-4870-B747-12031303F1A4}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{1E8A9177-3765-4870-B747-12031303F1A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E8A9177-3765-4870-B747-12031303F1A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E8A9177-3765-4870-B747-12031303F1A4}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
