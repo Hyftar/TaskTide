@@ -11,7 +11,6 @@ namespace TaskTideTests
             var recurrence =
                 new LunarCalendarRecurrence()
                 {
-                    Id = 1,
                     Ordinal = LunarCalendarOrdinal.FirstWeekdayOnMoonEvent,
                     TargetDate = new AnnualDate(6, 1),
                     TargetMoonPhase = MoonPhase.NewMoon,
@@ -41,12 +40,11 @@ namespace TaskTideTests
         }
 
         [Test]
-        public void LunarRecurrenceOn_FirstMondayAfterFullMoon_ShouldOccurOn()
+        public void LunarRecurrenceOn_Easter2023_ShouldOccurOn()
         {
             var recurrence =
                 new LunarCalendarRecurrence()
                 {
-                    Id = 1,
                     Ordinal = LunarCalendarOrdinal.FirstWeekdayAfterMoonEvent,
                     TargetDate = new AnnualDate(3, 21),
                     TargetMoonPhase = MoonPhase.FullMoon,
@@ -76,12 +74,11 @@ namespace TaskTideTests
         }
 
         [Test]
-        public void LunarRecurrenceOn_FirstMondayAfterFullMoon_ShouldOccurOn_2()
+        public void LunarRecurrenceOn_Easter2024_ShouldOccurOn()
         {
             var recurrence =
                 new LunarCalendarRecurrence()
                 {
-                    Id = 1,
                     Ordinal = LunarCalendarOrdinal.FirstWeekdayAfterMoonEvent,
                     TargetDate = new AnnualDate(3, 21),
                     TargetMoonPhase = MoonPhase.FullMoon,
@@ -116,7 +113,6 @@ namespace TaskTideTests
             var recurrence =
                 new LunarCalendarRecurrence()
                 {
-                    Id = 1,
                     Ordinal = LunarCalendarOrdinal.FirstWeekdayBeforeMoonEvent,
                     TargetDate = new AnnualDate(4, 1),
                     TargetMoonPhase = MoonPhase.FullMoon,
