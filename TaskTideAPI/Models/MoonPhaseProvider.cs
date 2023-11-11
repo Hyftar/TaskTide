@@ -17,14 +17,14 @@ namespace TaskTideAPI.Models
             var moonPhase =
                 illumination.Phase switch
                 {
-                    > 0.90  or <= 0.10 => MoonPhase.NewMoon,
-                    > 0.10 and <= 0.15 => MoonPhase.WaxingCrescent,
-                    > 0.15 and <= 0.35 => MoonPhase.FirstQuarter,
-                    > 0.35 and <= 0.40 => MoonPhase.WaxingGibbous,
-                    > 0.40 and <= 0.60 => MoonPhase.FullMoon,
-                    > 0.60 and <= 0.65 => MoonPhase.WaningGibbous,
-                    > 0.65 and <= 0.85 => MoonPhase.ThirdQuarter,
-                    > 0.85 and <= 0.90 => MoonPhase.WaningCrescent,
+                    > 0.94  or <= 0.05 => MoonPhase.NewMoon,
+                    > 0.05 and <= 0.15 => MoonPhase.WaxingCrescent,
+                    > 0.15 and <= 0.275 => MoonPhase.FirstQuarter,
+                    > 0.275 and <= 0.44 => MoonPhase.WaxingGibbous,
+                    > 0.44 and <= 0.55 => MoonPhase.FullMoon,
+                    > 0.55 and <= 0.705 => MoonPhase.WaningGibbous,
+                    > 0.705 and <= 0.85 => MoonPhase.ThirdQuarter,
+                    > 0.85 and <= 0.94 => MoonPhase.WaningCrescent,
 
                     _ => throw new NotImplementedException(),
                 };
