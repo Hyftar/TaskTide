@@ -45,73 +45,27 @@ namespace TaskTideAPI.Models
                 return false;
             }
 
-            var daysBetween = new DateInterval(targetDateInYear, target);
+            var firstDayOfWeekBeforeMoonEventAfterTarget =
+                new DateInterval(targetDateInYear, targetDateInYear.PlusDays(30))
+                    .First(x => this.MoonPhaseProvider.GetMoonPhase(x.At(new LocalTime(12, 0))).MoonPhase == recurrence.TargetMoonPhase)
+                    .Next(target.DayOfWeek);
 
-            var lunarEventHappened = false;
-            foreach (var day in daysBetween)
-            {
-                var weekdayFlag = (Weekdays) (1 << ((int) day.DayOfWeek - 1));
-                var moonPhase = this.MoonPhaseProvider.GetMoonPhase(day.AtMidnight());
-                var isOnMoonPhase = moonPhase.MoonPhase == recurrence.TargetMoonPhase;
-
-                // Check if conditions are met before reaching target day
-                if (day != target
-                    && lunarEventHappened
-                    && (weekdayFlag & recurrence.TargetWeekdays) != 0)
-                {
-                    return false;
-                }
-
-                if (isOnMoonPhase)
-                {
-                    lunarEventHappened = true;
-                }
-
-                if (lunarEventHappened && day == target)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return firstDayOfWeekBeforeMoonEventAfterTarget == target;
         }
 
         private bool HandleBeforeMoonEvent(LunarCalendarRecurrence recurrence, LocalDate targetDateInYear, LocalDate target)
         {
-            if (targetDateInYear < target)
+            if (targetDateInYear > target)
             {
                 return false;
             }
 
-            var daysBetween = new DateInterval(target, targetDateInYear).Reverse();
+            var firstDayOfWeekBeforeMoonEventAfterTarget =
+                new DateInterval(targetDateInYear, targetDateInYear.PlusDays(30))
+                    .First(x => this.MoonPhaseProvider.GetMoonPhase(x.AtMidnight()).MoonPhase == recurrence.TargetMoonPhase)
+                    .Previous(target.DayOfWeek);
 
-            var lunarEventHappened = false;
-            foreach (var day in daysBetween)
-            {
-                var weekdayFlag = (Weekdays) (1 << ((int) day.DayOfWeek - 1));
-                var moonPhase = this.MoonPhaseProvider.GetMoonPhase(day.AtMidnight());
-                var isOnMoonPhase = moonPhase.MoonPhase == recurrence.TargetMoonPhase;
-
-                // Check if conditions are met before reaching target day
-                if (day != target
-                    && lunarEventHappened
-                    && (weekdayFlag & recurrence.TargetWeekdays) != 0)
-                {
-                    return false;
-                }
-
-                if (isOnMoonPhase)
-                {
-                    lunarEventHappened = true;
-                }
-
-                if (lunarEventHappened && day == target)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return firstDayOfWeekBeforeMoonEventAfterTarget == target;
         }
 
         private bool HandleOnMoonEvent(
@@ -135,5 +89,4 @@ namespace TaskTideAPI.Models
             return firstWeekDayAfterMoonEvent == target;
         }
     }
-
 }
