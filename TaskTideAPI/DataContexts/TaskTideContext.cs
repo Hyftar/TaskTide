@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TaskTideAPI.Models;
+using NodaTime;
+using TaskTideAPI.DataContexts.Seeds;
 
 namespace TaskTideAPI.DataContexts;
 
@@ -14,6 +16,8 @@ public partial class TaskTideContext : DbContext
     public DbSet<TaskEvent> TaskEvents { get; set; }
 
     public DbSet<Recurrence> Recurrences { get; set; }
+
+    public DbSet<LunarCalendarRecurrence> LunarCalendarRecurrences { get; internal set; }
 
     public DbSet<TaskEventInstance> TaskEventsInstance { get; set; }
 
@@ -61,6 +65,19 @@ public partial class TaskTideContext : DbContext
             .Entity<CalendarInvitation>()
             .HasOne(x => x.Invitee)
             .WithMany(x => x.InvitationsReceived);
+
+        modelBuilder
+            .Entity<LunarCalendarRecurrence>()
+            .HasOne(x => x.Parent)
+            .WithMany(x => x.LunarCalendarRecurrences);
+
+        modelBuilder
+            .Entity<LunarCalendarRecurrence>()
+            .Property(x => x.TargetDate)
+            .IsRequired()
+            .HasConversion(v => v.InYear(1972), v => new AnnualDate(v.Month, v.Day));
+
+        modelBuilder.ApplyAllSeeds();
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

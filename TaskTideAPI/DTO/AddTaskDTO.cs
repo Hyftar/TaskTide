@@ -24,5 +24,8 @@ namespace TaskTideAPI.DTO
 
         [Required]
         public ICollection<RecurrenceDTO> Recurrences { get; set; }
+
+        [Required]
+        public ICollection<LunarCalendarRecurrenceDTO> LunarCalendarRecurrences { get; set; }
     }
 }

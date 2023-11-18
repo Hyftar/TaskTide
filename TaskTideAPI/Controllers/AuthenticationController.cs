@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using NodaTime;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -16,13 +17,16 @@ namespace TaskTideAPI.Controllers
     {
         private readonly IConfiguration Configuration;
         private readonly IUserRepository UserRepository;
+        private readonly ZonedClock Clock;
 
         public AuthenticationController(
             IConfiguration configuration,
-            IUserRepository userRepository)
+            IUserRepository userRepository,
+            ZonedClock clock)
         {
             this.Configuration = configuration;
             this.UserRepository = userRepository;
+            this.Clock = clock;
         }
 
         [HttpPost]
@@ -69,6 +73,7 @@ namespace TaskTideAPI.Controllers
                 audience: this.Configuration["JWT:Audience"],
                 claims,
                 expires: DateTime.MaxValue,
+                notBefore: this.Clock.GetCurrentZonedDateTime().ToDateTimeUtc(),
                 signingCredentials: creds
             );
 

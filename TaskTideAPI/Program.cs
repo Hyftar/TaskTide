@@ -6,6 +6,7 @@ using NodaTime;
 using System.Text;
 using TaskTideAPI.DataContexts;
 using Newtonsoft.Json;
+using NodaTime.Extensions;
 
 namespace TaskTideAPI
 {
@@ -34,7 +35,10 @@ namespace TaskTideAPI
                     options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                 );
 
-            builder.Services.RegisterAssemblyPublicNonGenericClasses().AsPublicImplementedInterfaces();
+            builder.Services
+                   .RegisterAssemblyPublicNonGenericClasses()
+                   .Where(x => !x.FullName?.EndsWith("Result") ?? false)
+                   .AsPublicImplementedInterfaces();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
@@ -96,7 +100,7 @@ namespace TaskTideAPI
                     }
                 );
 
-            builder.Services.AddSingleton<IClock>(SystemClock.Instance);
+            builder.Services.AddSingleton(SystemClock.Instance.InUtc());
 
             var app = builder.Build();
 

@@ -6,6 +6,8 @@ namespace TaskTideAPI.Repositories
 {
     public interface ICalendarRepository
     {
+        Calendar? GetCalendar(int userId, int calendarId);
+
         User GetUserCalendars(int userId);
     }
 
@@ -17,6 +19,25 @@ namespace TaskTideAPI.Repositories
             TaskTideContext taskTideContext)
         {
             this.DbContext = taskTideContext;
+        }
+
+        public Calendar? GetCalendar(int userId, int calendarId)
+        {
+            return
+                this.DbContext
+                    .Calendars
+                    .Where(x => x.Owner.Id == userId)
+                    .Include(x => x.Color)
+                    .Include(x => x.Invitations.Where(y => !y.Deleted && y.RespondedAt == null))
+                    .Include(x => x.SharedWith)
+                    .Include(x => x.TasksAndEvents.Where(y => !y.Deleted))
+                        .ThenInclude(x => x.Instances)
+                    .Include(x => x.TasksAndEvents.Where(y => !y.Deleted))
+                        .ThenInclude(x => x.Recurrences)
+                    .Include(x => x.TasksAndEvents.Where(y => !y.Deleted))
+                        .ThenInclude(x => x.LunarCalendarRecurrences)
+                    .AsSplitQuery()
+                    .FirstOrDefault();
         }
 
         public User GetUserCalendars(int userId)
@@ -31,12 +52,6 @@ namespace TaskTideAPI.Repositories
                         .ThenInclude(x => x.Invitations)
                     .Include(x => x.Calendars)
                         .ThenInclude(x => x.SharedWith)
-                    .Include(x => x.Calendars)
-                        .ThenInclude(x => x.TasksAndEvents.Where(y => !y.Deleted))
-                        .ThenInclude(x => x.Recurrences.Where(y => !y.Deleted))
-                    .Include(x => x.Calendars)
-                        .ThenInclude(x => x.TasksAndEvents.Where(y => !y.Deleted))
-                        .ThenInclude(x => x.Instances.Where(y => !y.Deleted))
                     /* Shared Calendars */
                     .Include(x => x.SharedCalendars)
                         .ThenInclude(x => x.Color)
@@ -44,12 +59,6 @@ namespace TaskTideAPI.Repositories
                         .ThenInclude(x => x.Invitations)
                     .Include(x => x.SharedCalendars)
                         .ThenInclude(x => x.SharedWith)
-                    .Include(x => x.SharedCalendars)
-                        .ThenInclude(x => x.TasksAndEvents.Where(y => !y.Deleted))
-                        .ThenInclude(x => x.Recurrences.Where(y => !y.Deleted))
-                    .Include(x => x.SharedCalendars)
-                        .ThenInclude(x => x.TasksAndEvents.Where(y => !y.Deleted))
-                        .ThenInclude(x => x.Instances.Where(y => !y.Deleted))
                     /* Invitations */
                     .Include(x => x.InvitationsReceived.Where(y => !y.Deleted && y.RespondedAt == null))
                         .ThenInclude(x => x.Inviter)

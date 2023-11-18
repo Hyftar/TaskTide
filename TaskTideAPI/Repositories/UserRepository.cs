@@ -16,13 +16,16 @@ namespace TaskTideAPI.Repositories
     {
         private readonly TaskTideContext TaskTideContext;
         private readonly ITransactionEventsRepository TransactionEventsRepository;
+        private readonly IColorRepository ColorRepository;
 
         public UserRepository(
             TaskTideContext taskTideContext,
-            ITransactionEventsRepository transactionEventsRepository)
+            ITransactionEventsRepository transactionEventsRepository,
+            IColorRepository colorRepository)
         {
             this.TaskTideContext = taskTideContext;
             this.TransactionEventsRepository = transactionEventsRepository;
+            this.ColorRepository = colorRepository;
         }
 
         public User GetById(int id)
@@ -52,6 +55,7 @@ namespace TaskTideAPI.Repositories
                     Owner = user,
                     Name = $"{user.Username}'s calendar",
                     IsReadOnly = true,
+                    Color = this.ColorRepository.GetColorByName("Default")
                 };
 
             this.TaskTideContext.Calendars.Add(userDefaultCalendar);

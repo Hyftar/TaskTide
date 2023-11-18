@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NodaTime;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -12,9 +13,11 @@ using TaskTideAPI.DataContexts;
 namespace TaskTideAPI.Migrations
 {
     [DbContext(typeof(TaskTideContext))]
-    partial class TaskTideContextModelSnapshot : ModelSnapshot
+    [Migration("20231118025125_AddLunarCalendarRecurrence")]
+    partial class AddLunarCalendarRecurrence
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -242,40 +245,6 @@ namespace TaskTideAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TaskEventColors");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Blue = (byte)203,
-                            Green = (byte)128,
-                            Name = "Default",
-                            Red = (byte)92
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Blue = (byte)79,
-                            Green = (byte)150,
-                            Name = "Orange",
-                            Red = (byte)255
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Blue = (byte)97,
-                            Green = (byte)105,
-                            Name = "Red",
-                            Red = (byte)255
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Blue = (byte)204,
-                            Green = (byte)122,
-                            Name = "Lavender",
-                            Red = (byte)174
-                        });
                 });
 
             modelBuilder.Entity("TaskTideAPI.Models.TaskEventInstance", b =>

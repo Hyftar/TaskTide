@@ -7,23 +7,23 @@ namespace TaskTideAPI.Repositories
 {
     public interface ITransactionEventsRepository
     {
-        void Log<T>(T modelInstance, TransactionType transactionType, User? user = null) where T : ITransactionItem;
+        void Log<T>(T modelInstance, TransactionType transactionType, User? user = null, bool saveChanges = false) where T : ITransactionItem;
     }
 
     public class TransactionEventsRepository : ITransactionEventsRepository
     {
         private readonly TaskTideContext TaskTideContext;
-        private readonly IClock Clock;
+        private readonly ZonedClock Clock;
 
         public TransactionEventsRepository(
             TaskTideContext taskTideContext,
-            IClock clock)
+            ZonedClock clock)
         {
             this.TaskTideContext = taskTideContext;
             this.Clock = clock;
         }
 
-        public void Log<T>(T modelInstance, TransactionType transactionType, User? user = null) where T : ITransactionItem
+        public void Log<T>(T modelInstance, TransactionType transactionType, User? user = null, bool saveChanges = false) where T : ITransactionItem
         {
             this.TaskTideContext
                 .TransactionnalEvents
@@ -32,11 +32,16 @@ namespace TaskTideAPI.Repositories
                     {
                         Model = modelInstance.GetType().Name,
                         ModelId = modelInstance.Id,
-                        Timestamp = this.Clock.InUtc().GetCurrentZonedDateTime(),
+                        Timestamp = this.Clock.GetCurrentZonedDateTime(),
                         Type = transactionType,
                         User = user,
                     }
                 );
+
+            if (saveChanges)
+            {
+                this.TaskTideContext.SaveChanges();
+            }
         }
     }
 }
